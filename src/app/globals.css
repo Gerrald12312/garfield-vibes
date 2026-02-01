@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FFF5F5;
+  --foreground: #1A1A2E;
+}
+
+.dark {
+  --background: #0D0D0D;
+  --foreground: #FFE4E1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(155, 89, 182, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #FF6B35, #FF69B4, #9B59B6);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #FF1493, #8B5CF6);
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow:
+    0 0 10px rgba(255, 107, 53, 0.8),
+    0 0 20px rgba(255, 105, 180, 0.6),
+    0 0 30px rgba(155, 89, 182, 0.4);
+}
+
+.dark .glow-text {
+  text-shadow:
+    0 0 10px rgba(255, 107, 53, 1),
+    0 0 30px rgba(255, 105, 180, 0.8),
+    0 0 50px rgba(155, 89, 182, 0.6);
+}
+
+/* Card hover glow */
+.card-glow {
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow:
+    0 0 20px rgba(255, 107, 53, 0.4),
+    0 0 40px rgba(255, 105, 180, 0.3),
+    0 0 60px rgba(155, 89, 182, 0.2);
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, #FF6B35, #FF69B4, #9B59B6);
+  padding: 3px;
+  border-radius: 16px;
+}
+
+.gradient-border > * {
+  border-radius: 14px;
+}
+
+/* Animated background */
+.animated-bg {
+  background: linear-gradient(-45deg, #FF6B35, #FF69B4, #9B59B6, #00CED1);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Retro grid background */
+.retro-grid {
+  background-image:
+    linear-gradient(rgba(255, 105, 180, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 105, 180, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.dark .retro-grid {
+  background-image:
+    linear-gradient(rgba(255, 105, 180, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 105, 180, 0.2) 1px, transparent 1px);
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 107, 53, 0.1) 0%,
+    rgba(255, 105, 180, 0.2) 50%,
+    rgba(155, 89, 182, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Floating animation */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Star sparkle effect */
+.sparkle {
+  position: relative;
+}
+
+.sparkle::after {
+  content: "✨";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 20px;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Rainbow text */
+.rainbow-text {
+  background: linear-gradient(90deg, #FF6B35, #FF69B4, #9B59B6, #00CED1, #FF6B35);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
