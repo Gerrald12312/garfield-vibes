@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 
 interface Meme {
   id: number;
@@ -14,73 +13,73 @@ interface Meme {
 const memes: Meme[] = [
   {
     id: 1,
-    url: "https://picsum.photos/seed/garfield1/400/400",
+    url: "https://i.imgflip.com/2kuh6f.jpg",
     title: "Monday Blues",
     caption: "I hate Mondays... but I love lasagna more",
   },
   {
     id: 2,
-    url: "https://picsum.photos/seed/garfield2/400/400",
+    url: "https://i.imgflip.com/1ur9b0.jpg",
     title: "Lasagna Dreams",
     caption: "When the lasagna hits different at 3am",
   },
   {
     id: 3,
-    url: "https://picsum.photos/seed/garfield3/400/400",
+    url: "https://i.imgflip.com/5c7lwq.jpg",
     title: "Nap Time",
     caption: "Sleep is just death being shy",
   },
   {
     id: 4,
-    url: "https://picsum.photos/seed/garfield4/400/400",
+    url: "https://i.imgflip.com/67r77m.png",
     title: "Diet? Never Heard of Her",
     caption: "Calories don't count if no one sees you eat",
   },
   {
     id: 5,
-    url: "https://picsum.photos/seed/garfield5/400/400",
+    url: "https://i.imgflip.com/7q9vvj.jpg",
     title: "Odie Who?",
     caption: "That's a weird way to spell 'annoying'",
   },
   {
     id: 6,
-    url: "https://picsum.photos/seed/garfield6/400/400",
+    url: "https://i.imgflip.com/4acd7j.png",
     title: "Jon's Cooking",
     caption: "I've seen things... terrible things",
   },
   {
     id: 7,
-    url: "https://picsum.photos/seed/garfield7/400/400",
+    url: "https://i.imgflip.com/64sz4u.png",
     title: "Existential Dread",
     caption: "Life is meaningless but lasagna gives it purpose",
   },
   {
     id: 8,
-    url: "https://picsum.photos/seed/garfield8/400/400",
+    url: "https://i.imgflip.com/6n1wow.jpg",
     title: "Maximum Loaf",
     caption: "I'm not fat, I'm fluffy and full of dreams",
   },
   {
     id: 9,
-    url: "https://picsum.photos/seed/garfield9/400/400",
+    url: "https://i.imgflip.com/7ensc6.jpg",
     title: "Morning Person",
     caption: "Don't talk to me until I've had my 5th nap",
   },
   {
     id: 10,
-    url: "https://picsum.photos/seed/garfield10/400/400",
+    url: "https://i.imgflip.com/8k7q1o.jpg",
     title: "Weekend Mood",
     caption: "Finally, inner peace (and outer pizza)",
   },
   {
     id: 11,
-    url: "https://picsum.photos/seed/garfield11/400/400",
+    url: "https://i.imgflip.com/6gfzd4.jpg",
     title: "Self Care",
     caption: "Treating myself? I AM the treat",
   },
   {
     id: 12,
-    url: "https://picsum.photos/seed/garfield12/400/400",
+    url: "https://i.imgflip.com/7cmn7m.jpg",
     title: "Productivity King",
     caption: "I did nothing today and it was everything I hoped",
   },
@@ -120,7 +119,7 @@ function MemeCard({ meme, index }: { meme: Meme; index: number }) {
         rotate: Math.random() > 0.5 ? 2 : -2,
         zIndex: 10
       }}
-      className="group relative"
+      className="group relative cursor-pointer"
     >
       <div className="gradient-border card-glow">
         <div className="bg-light-card dark:bg-dark-card overflow-hidden">
@@ -130,25 +129,20 @@ function MemeCard({ meme, index }: { meme: Meme; index: number }) {
               <div className="absolute inset-0 shimmer bg-garfield-lavender/20" />
             )}
             {isInView && (
-              <Image
+              <img
                 src={meme.url}
                 alt={meme.title}
-                fill
-                className={`object-cover transition-all duration-500 group-hover:scale-110 ${
+                className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${
                   isLoaded ? "opacity-100" : "opacity-0"
                 }`}
                 onLoad={() => setIsLoaded(true)}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
               />
             )}
             {/* Overlay on hover */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-              className="absolute inset-0 bg-gradient-to-t from-dark-bg/90 via-dark-bg/50 to-transparent flex items-end p-4"
-            >
+            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/90 via-dark-bg/50 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <p className="text-white text-sm font-medium">{meme.caption}</p>
-            </motion.div>
+            </div>
           </div>
 
           {/* Title */}
@@ -235,12 +229,10 @@ export default function MemeGallery() {
               >
                 <div className="bg-light-card dark:bg-dark-card overflow-hidden">
                   <div className="relative aspect-square">
-                    <Image
+                    <img
                       src={selectedMeme.url}
                       alt={selectedMeme.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="p-6">
